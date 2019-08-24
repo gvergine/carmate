@@ -1,0 +1,5 @@
+add_subdirectory(gps_reader)
+add_subdirectory(clock)
+add_subdirectory(syncer)
+add_subdirectory(tracker)
+add_subdirectory(carmate)

@@ -1,0 +1,1 @@
+set(SYNCER_SOURCES src/syncer.c)

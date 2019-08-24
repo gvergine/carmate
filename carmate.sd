@@ -1,0 +1,59 @@
+basic_type bool bytes 1 header "stdbool.h"
+basic_type uint8_t bytes 1 header "stdint.h"
+basic_type int16_t bytes 2 header "stdint.h"
+basic_type double bytes 8
+
+struct gps_fix {
+	double lat
+	double lon
+	int16_t alt 
+}
+
+struct gps_info {
+	bool device_available
+	bool fix_available
+	gps_fix fix
+}
+
+loop gps_reader {
+	
+	ports_out {
+		gps_info gps_update
+	}
+}
+
+loop tracker {
+	queue_size 16 KiB
+	
+	ports_in {
+		gps_info info
+	}
+	
+	ports_out {
+		uint8_t sync_signal 
+	}
+}
+
+loop clock {
+	ports_out
+	{
+		uint8_t minute_signal
+		uint8_t second_signal
+	}
+}
+
+loop syncer {
+	queue_size 1 KiB
+	
+	ports_in {
+		uint8_t sync_signal
+		uint8_t timer_signal
+	}
+
+}
+
+connect gps_reader.gps_update to tracker.info
+connect tracker.sync_signal to syncer.sync_signal
+connect clock.minute_signal to syncer.timer_signal
+
+
