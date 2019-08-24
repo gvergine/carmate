@@ -12,3 +12,5 @@ target_link_libraries(carmate
 	clock
 	tracker
 )
+
+install(TARGETS carmate DESTINATION ${CMAKE_INSTALL_BINDIR})
