@@ -19,7 +19,7 @@ void process_nmea_string(char* buf) {
 		if (minmea_parse_rmc(&frame, buf)) {
 			info.fix.latitude = minmea_tocoord(&frame.latitude);
 			info.fix.longitude = minmea_tocoord(&frame.longitude);
-			info.fix.speed = minmea_tocoord(&frame.speed) * 1.852;
+			info.fix.speed = minmea_tofloat(&frame.speed) * 1.852;
 			info.fix.time.seconds = frame.time.seconds;
 			info.fix.time.minutes = frame.time.minutes;
 			info.fix.time.hours = frame.time.hours;
