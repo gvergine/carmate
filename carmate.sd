@@ -1,12 +1,23 @@
 basic_type bool bytes 1 header "stdbool.h"
 basic_type uint8_t bytes 1 header "stdint.h"
 basic_type int16_t bytes 2 header "stdint.h"
-basic_type double bytes 8
+basic_type uint16_t bytes 2 header "stdint.h"
+basic_type float bytes 4
+
+struct time {
+	uint8_t seconds
+	uint8_t minutes
+	uint8_t hours
+	uint8_t day
+	uint8_t month
+	uint16_t year
+}
 
 struct gps_fix {
-	double lat
-	double lon
-	int16_t alt 
+	float latitude
+	float longitude
+	float speed
+	time time 
 }
 
 struct gps_info {

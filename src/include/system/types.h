@@ -17,6 +17,7 @@ struct gps_fix {
 	float speed;
 	struct time time;
 };
+
 struct gps_info {
 	bool device_available;
 	bool fix_available;
