@@ -1,1 +1,1 @@
-set(GPS_READER_SOURCES src/gps_reader.c src/minmea.c)
+set(GPS_READER_SOURCES src/gps_reader.c)
